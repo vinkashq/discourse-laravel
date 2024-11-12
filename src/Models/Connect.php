@@ -3,6 +3,7 @@
 namespace Vinkas\Discourse\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Vinkas\Discourse\Client;
 
 /**
  *

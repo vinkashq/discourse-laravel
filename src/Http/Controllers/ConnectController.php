@@ -4,7 +4,6 @@ namespace Vinkas\Discourse\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Vinkas\Discourse\Client;
 use Vinkas\Discourse\Models\Connect;
 
 class ConnectController extends Controller
