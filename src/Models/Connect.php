@@ -47,4 +47,26 @@ class Connect extends Model
 
     return $this->client->getResponseUrl($userParams);
   }
+
+  public function redirect() {
+    $url = $this->getResponseUrl();
+    session()->forget('discourse_connect');
+    session()->forget('discourse_sso');
+    session()->forget('discourse_sig');
+    return redirect($url);
+  }
+
+  public static function redirectIfNeeded() {
+    if (auth()->guest() || !session('discourse_connect')) {
+      return;
+    }
+
+    $connect = self::where('key', session('discourse_connect'))->first();
+    if ($connect && session('discourse_sso') && session('discourse_sig')) {
+      $connect->setClientAttributes(session('discourse_sso'), session('discourse_sig'));
+      return $connect->redirect();
+    }
+
+    return;
+  }
 }
