@@ -2,9 +2,9 @@
 
 namespace Vinkas\Discourse;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
-class DiscourseServiceProvider extends ServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
   /**
    * Perform post-registration booting of services.
@@ -14,6 +14,7 @@ class DiscourseServiceProvider extends ServiceProvider
   public function boot()
   {
     $this->loadMigrationsFrom(__DIR__.'../database/migrations');
+    $this->loadRoutesFrom(__DIR__.'/../routes/discourse.php');
   }
 
 }
