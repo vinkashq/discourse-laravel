@@ -13,7 +13,9 @@ class ServiceProvider extends BaseServiceProvider
    */
   public function boot()
   {
-    $this->loadMigrationsFrom(__DIR__.'../database/migrations');
+    $this->publishesMigrations([
+      __DIR__.'../database/migrations' => database_path('migrations'),
+    ], 'discourse-migrations');
     $this->loadRoutesFrom(__DIR__.'/../routes/discourse.php');
   }
 
