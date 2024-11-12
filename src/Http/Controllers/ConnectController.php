@@ -24,9 +24,9 @@ class ConnectController extends Controller
 
     $host = parse_url($connect->url, PHP_URL_HOST);
     $client = new Client($host, true);
-    $connect = $client->connect($connect->secret, $sso, $sig);
+    $discourseConnect = $client->connect($connect->secret, $sso, $sig);
 
-    if (!($connect->isValid())) {
+    if (!($discourseConnect->isValid())) {
       header("HTTP/1.1 403 Forbidden");
       echo("Bad SSO request");
       die();
@@ -45,7 +45,7 @@ class ConnectController extends Controller
         'name'     => $user->name
     );
 
-    $url = $connect->getResponseUrl($userParams);
+    $url = $discourseConnect->getResponseUrl($userParams);
     return redirect($url);
   }
 }
