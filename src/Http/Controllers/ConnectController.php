@@ -27,12 +27,12 @@ class ConnectController extends Controller
 
     $user = $request->user();
     if (!$user) {
-      session('discourse_connect', $connect->key);
-      session('discourse_sso', $sso);
-      session('discourse_sig', $sig);
+      session()->put('discourse_connect', $connect->key);
+      session()->put('discourse_sso', $sso);
+      session()->put('discourse_sig', $sig);
       return redirect('/login');
     }
 
-    return $connect->redirect();
+    return $connect->getRedirectResponse();
   }
 }

@@ -48,7 +48,7 @@ class Connect extends Model
     return $this->client->getResponseUrl($userParams);
   }
 
-  public function redirect() {
+  public function getRedirectResponse() {
     $url = $this->getResponseUrl();
     session()->forget('discourse_connect');
     session()->forget('discourse_sso');
@@ -56,7 +56,7 @@ class Connect extends Model
     return redirect($url);
   }
 
-  public static function redirectIfNeeded() {
+  public static function find() {
     if (auth()->guest() || !session('discourse_connect')) {
       return;
     }
@@ -64,7 +64,7 @@ class Connect extends Model
     $connect = self::where('key', session('discourse_connect'))->first();
     if ($connect && session('discourse_sso') && session('discourse_sig')) {
       $connect->setClientAttributes(session('discourse_sso'), session('discourse_sig'));
-      return $connect->redirect();
+      return $connect;
     }
 
     return;
