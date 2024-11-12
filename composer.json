@@ -1,12 +1,12 @@
 {
     "name": "vinkas/discourse-laravel",
-    "description": "Lets you use Discourse as the forum or community engine for a Laravel website using API.",
+    "description": "Laravel package to authenticate your forum using Discourse Connect",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Vinoth Kannan",
-            "email": "vinothkannan@vinkas.com",
+            "email": "vinoth.kannan@vinkas.com",
             "homepage": "https://github.com/vinothkananns"
         },
         {
@@ -15,18 +15,18 @@
         }
     ],
     "require": {
-        "php": ">=5.6.4",
-        "vinkas/discourse-php": "1.0.*"
+        "php": "^8.1",
+        "vinkas/discourse": "^2.0"
 	  },
     "autoload": {
         "psr-4": {
-            "Vinkas\\Discourse\\Laravel\\": "src/"
+            "Vinkas\\Discourse\\": "src/"
         }
     },
-    "keywords": ["api", "discourse", "laravel", "vinkas"],
+    "keywords": ["connect", "discourse", "laravel", "vinkas"],
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-main": "1.0-dev"
         }
     },
     "minimum-stability": "dev",

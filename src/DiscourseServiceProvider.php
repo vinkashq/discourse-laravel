@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinkas\Discourse\Laravel;
+namespace Vinkas\Discourse;
 
 use Illuminate\Support\ServiceProvider;
 

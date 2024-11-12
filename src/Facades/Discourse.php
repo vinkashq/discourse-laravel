@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinkas\Discourse\Laravel\Facades;
+namespace Vinkas\Discourse\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
