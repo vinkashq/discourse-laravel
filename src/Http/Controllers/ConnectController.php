@@ -30,14 +30,7 @@ class ConnectController extends Controller
       return redirect('/login')->cookie('discourse_connect', $connect->key);
     }
 
-    $userParams = array(
-        'external_id' => $user->id,
-        'email'     => $user->email,
-        'username' => $user->username,
-        'name'     => $user->name
-    );
-
-    $url = $connect->getResponseUrl($userParams);
+    $url = $connect->getResponseUrl();
     return redirect($url)->withoutCookie('discourse_connect');
   }
 }

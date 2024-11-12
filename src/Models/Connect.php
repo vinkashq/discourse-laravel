@@ -35,7 +35,16 @@ class Connect extends Model
     return $this->_client;
   }
 
-  public function getResponseUrl($userParams) {
+  public function getResponseUrl() {
+    $user = auth()->user();
+
+    $userParams = array(
+      'external_id' => $user->id,
+      'email'     => $user->email,
+      'username' => $user->username,
+      'name'     => $user->name
+    );
+
     return $this->client->getResponseUrl($userParams);
   }
 }
