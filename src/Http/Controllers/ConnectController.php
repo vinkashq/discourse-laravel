@@ -22,18 +22,11 @@ class ConnectController extends Controller
       return response()->json(['error' => 'Invalid request'], 400);
     }
 
-    $host = parse_url($connect->url, PHP_URL_HOST);
-    $client = new Client($host, true);
-    $discourseConnect = $client->connect($connect->secret, $sso, $sig);
-
-    if (!($discourseConnect->isValid())) {
-      header("HTTP/1.1 403 Forbidden");
-      echo("Bad SSO request");
-      die();
+    if (!$connect->validate($sso, $sig)) {
+      return response()->json(['error' => 'Bad SSO request'], 403);
     }
 
     $user = $request->user();
-
     if (!$user) {
       return redirect('/login')->cookie('discourse_connect', $connect->key);
     }
@@ -45,7 +38,7 @@ class ConnectController extends Controller
         'name'     => $user->name
     );
 
-    $url = $discourseConnect->getResponseUrl($userParams);
-    return redirect($url);
+    $url = $connect->getResponseUrl($userParams);
+    return redirect($url)->withoutCookie('discourse_connect');
   }
 }
