@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "vinkas/discourse": "^2.0"
+        "vinkas/discourse": "^2.1"
 	  },
     "autoload": {
         "psr-4": {
@@ -30,5 +30,8 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require-dev": {
+        "phpstan/phpstan": "^2.0"
+    }
 }
